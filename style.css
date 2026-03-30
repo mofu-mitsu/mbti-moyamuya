@@ -188,7 +188,20 @@ textarea {
 .action-buttons .btn {
     margin-top: 0; /* 元々のマージンをリセット */
 }
+/* 👇 ハトが空へ飛んでいくアニメーション */
+@keyframes flyAway {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-40px) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+}
 
+.flying-dove {
+    font-size: 40px;
+    color: #5b8c85; /* 少し落ち着いた青緑 */
+    margin: 20px auto;
+    text-align: center;
+    animation: flyAway 1.5s ease-in forwards;
+}
 /* (今までのCSSはそのままにして、一番下にこれを追加してね！) */
 
 /* 👇 スマホ用レスポンシブデザイン */
