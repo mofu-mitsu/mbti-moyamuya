@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- タイトルと説明 -->
+    <title>MBTIのモヤモヤ解剖室 - あなたの違和感、どこから？</title>
+    <meta name="description" content="「MBTIってなんか違和感ある…」そのモヤモヤの正体を、そっと解剖してみませんか？1問で終わる価値観整理ツールです。">
+    
+    <!-- OGPタグ -->
+    <meta property="og:url" content="https://mofu-mitsu.github.io/mbti-moyamuya/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MBTIのモヤモヤ解剖室 - あなたの違和感、どこから？">
+    <meta property="og:description" content="「MBTIってなんか違和感ある…」そのモヤモヤの正体を1問で解剖する防衛ツールです。">
+    <meta property="og:site_name" content="MBTIのモヤモヤ解剖室">
+    <meta property="og:image" content="https://mofu-mitsu.github.io/mbti-moyamuya/ogp.png"> 
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>🔬</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- タイトル画面 -->
+        <div id="start-screen" class="screen active">
+            <h1><i class="fa-solid fa-microscope"></i> MBTIのモヤモヤ解剖室</h1>
+            <p>「MBTIってなんか違和感ある…」<br>そのモヤモヤの正体、そっと解剖してみませんか？</p>
+            <p class="sub-text">※論破や押し付けはしません。1問だけで終わる価値観整理ツールです。</p>
+            
+            <button id="start-btn" class="btn"><i class="fa-solid fa-play"></i> 解剖をはじめる</button>
+            <button id="share-top-btn" class="btn-share"><i class="fa-solid fa-arrow-up-from-bracket"></i> この解剖室をシェア</button>
+
+            <!-- 👇 防衛モード（トップ画面に移動！） -->
+            <div class="accordion-container">
+                <button class="accordion-btn"><i class="fa-solid fa-shield-halved"></i> 【自衛用】MBTI好きのための防衛テンプレ集を開く</button>
+                <div class="accordion-content">
+                    <div id="defense-templates">
+                        <!-- JSで生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 質問画面 -->
+        <div id="question-screen" class="screen">
+            <h2 id="question-text">質問文がここに入ります</h2>
+            <div id="choices-container" class="choices"></div>
+            
+            <div class="free-text-section">
+                <p class="free-text-title"><i class="fa-solid fa-pen-nib"></i> 選択肢にない？自由に吐き出してOK！</p>
+                <textarea id="free-text-input" rows="3" placeholder="ここが気に食わない！など、ご自由にどうぞ。"></textarea>
+                <button id="free-text-btn" class="btn-small"><i class="fa-solid fa-paper-plane"></i> モヤモヤを空へ飛ばす</button>
+                <p id="free-text-msg" class="hidden-msg"><i class="fa-solid fa-dove"></i> 吐き出し完了！モヤモヤを浄化しました✨</p>
+            </div>
+        </div>
+
+        <!-- 結果画面 -->
+        <div id="result-screen" class="screen">
+            <h2 id="result-title">結果タイトル</h2>
+            <p id="result-desc">結果の説明文がここに入ります。</p>
+            <div class="result-box">
+                <h3><i class="fa-solid fa-shield"></i> 防衛のお守り（このスタンスでOK）</h3>
+                <p id="result-advice">アドバイスが入ります。</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="share-result-btn" class="btn-share"><i class="fa-solid fa-arrow-up-from-bracket"></i> 結果をシェアする</button>
+                <button id="restart-btn" class="btn"><i class="fa-solid fa-rotate-right"></i> トップへ戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
