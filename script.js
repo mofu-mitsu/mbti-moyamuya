@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         questionScreen.classList.add("active");
     });
 
+// ▼▼▼ 質問表示（リセット処理をちょっと修正！） ▼▼▼
     function showQuestion() {
         questionText.textContent = quizData.question;
         choicesContainer.innerHTML = "";
@@ -77,22 +78,48 @@ document.addEventListener("DOMContentLoaded", () => {
             choicesContainer.appendChild(btn);
         });
 
-        // 自由入力欄リセット
+        // 自由入力欄のリセット（次に開いた時のために元に戻す）
+        document.querySelector(".free-text-title").style.display = "block";
         document.getElementById("free-text-input").value = "";
         document.getElementById("free-text-input").style.display = "block";
         document.getElementById("free-text-btn").style.display = "inline-block";
         document.getElementById("free-text-msg").style.display = "none";
     }
 
-    // 自由入力送信
+    // ▼▼▼ 自由入力送信 ＆ 飛んでいく演出！ ▼▼▼
     document.getElementById("free-text-btn").addEventListener("click", () => {
         const input = document.getElementById("free-text-input").value;
-        if(input.trim() === "") return;
+        if(input.trim() === "") return; // 空っぽなら何もしない
 
-        sendToGAS("free_text", input);
+        sendToGAS("free_text", input); // 裏でこっそりみつきのGASへ送信！
+
+        // 入力欄やタイトルを一旦隠す
         document.getElementById("free-text-input").style.display = "none";
         document.getElementById("free-text-btn").style.display = "none";
-        document.getElementById("free-text-msg").style.display = "block";
+        document.querySelector(".free-text-title").style.display = "none";
+
+        // ハトを召喚して飛ばす🕊️✨
+        const dove = document.createElement("div");
+        dove.classList.add("flying-dove");
+        dove.innerHTML = '<i class="fa-solid fa-dove"></i>';
+        
+        const freeTextSection = document.querySelector(".free-text-section");
+        freeTextSection.appendChild(dove);
+
+        // 1.5秒後（ハトが飛んで消えた後）に浄化メッセージを表示
+        setTimeout(() => {
+            dove.remove(); // 飛んでいったハトを削除
+            const msg = document.getElementById("free-text-msg");
+            msg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> 浄化完了！トップに戻ります...';
+            msg.style.display = "block";
+
+            // さらに2秒後に、自動でトップ画面へ戻る！
+            setTimeout(() => {
+                questionScreen.classList.remove("active");
+                startScreen.classList.add("active");
+            }, 2000);
+
+        }, 1500);
     });
 
     // 結果表示
